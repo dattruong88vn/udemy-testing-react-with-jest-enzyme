@@ -1,6 +1,6 @@
 
 import Enzyme, { shallow } from "enzyme";
-import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17'
+import EnzymeAdapter from 'enzyme-adapter-react-16'
 import App from './App';
 
 Enzyme.configure({
