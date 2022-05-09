@@ -1,5 +1,7 @@
 import React from 'react';
 
-const App = () => <div>learn react</div>;
+const App = () => <div data-test="component-app">
+
+</div>;
 
 export default App;
