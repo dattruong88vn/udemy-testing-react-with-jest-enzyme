@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const App = () => (
-    <div data-test="component-app">
-        <h1 data-test="counter-display">The counter is currently</h1>
-        <button data-test="increment-button">Increment</button>
-    </div>
-);
+const App = () => {
+    const [count, setCount] = useState(0);
+
+    return (
+        <div data-test="component-app">
+            <h1 data-test="counter-display">The counter is currently
+                <span data-test="count">{count}</span>
+            </h1>
+            <button data-test="increment-button">Increment</button>
+        </div>
+    )
+};
 
 export default App;
