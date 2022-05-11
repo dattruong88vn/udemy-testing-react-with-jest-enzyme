@@ -1,5 +1,6 @@
 import React from 'react';
 
-const App = () => <div>learn react</div>;
+const App = () => <div>
+</div>;
 
 export default App;
