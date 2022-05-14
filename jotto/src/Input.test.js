@@ -4,6 +4,13 @@ import { shallow } from 'enzyme';
 import { findByTestAttr, checkProps } from "../test/testUtils"
 import Input from "./Input"
 
+// case destructuring useState in Input component
+// const mockSetCurrentGuess = jest.fn();
+// jest.mock('react', () => ({
+//     ...jest.requireActual('react'),
+//     useState: (initialState) => [initialState, mockSetCurrentGuess]
+// }))
+
 const defaultProps = {
     secretWord: "train"
 }
@@ -26,8 +33,7 @@ test("does not throw warning with expected prop", () => {
 describe("state control input field", () => {
     test("state update with value of input box onchange", () => {
         const mockSetCurrentGuess = jest.fn();
-        React.useState = jest.fn(() => ["", mockSetCurrentGuess]);
-
+        React.useState = () => (["", mockSetCurrentGuess])
         const wrapper = setup();
         const inputBox = findByTestAttr(wrapper, "input-box");
 
