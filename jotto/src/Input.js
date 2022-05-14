@@ -6,6 +6,12 @@ Input.propTypes = {
 };
 
 function Input({ secretWord }) {
+    const [currentGuess, setCurrentGuess] = React.useState('');
+
+    const handleChange = (e) => {
+        setCurrentGuess(e.target.value)
+    }
+
     let warning;
     if (!secretWord) {
         warning = (
@@ -17,7 +23,10 @@ function Input({ secretWord }) {
 
     return (
         <div data-test="component-input">
-            {warning}
+            <form className='form-inline'>
+                <input data-test="input-box" className='mb-2 mx-sm-3' type="text" placeholder='enter guess' value={currentGuess} onChange={handleChange} />
+                <button data-test="submit-button" className='btn btn-primary mb-2'>Submit</button>
+            </form>
         </div>
     );
 }

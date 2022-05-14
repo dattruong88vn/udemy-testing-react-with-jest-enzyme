@@ -1,3 +1,4 @@
+import React from 'react';
 import { shallow } from 'enzyme';
 
 import { findByTestAttr, checkProps } from "../test/testUtils"
@@ -21,3 +22,24 @@ test("renders without error", () => {
 test("does not throw warning with expected prop", () => {
     checkProps(Input, defaultProps)
 })
+
+describe("state control input field", () => {
+    test("state update with value of input box onchange", () => {
+        const mockSetCurrentGuess = jest.fn();
+        React.useState = jest.fn(() => ["", mockSetCurrentGuess]);
+
+        const wrapper = setup();
+        const inputBox = findByTestAttr(wrapper, "input-box");
+
+        const mockEvent = { target: { value: 'train' } };
+        inputBox.simulate('change', mockEvent);
+
+        expect(mockSetCurrentGuess).toHaveBeenCalledWith('train');
+    })
+})
+
+
+
+
+
+
