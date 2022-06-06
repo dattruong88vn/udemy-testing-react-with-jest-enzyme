@@ -5,7 +5,7 @@ Input.propTypes = {
     secretWord: PropTypes.string.isRequired
 };
 
-function Input({ secretWord }) {
+function Input({ success, secretWord }) {
     const [currentGuess, setCurrentGuess] = React.useState('');
 
     const handleChange = (e) => {
@@ -17,13 +17,8 @@ function Input({ secretWord }) {
         setCurrentGuess("");
     }
 
-    let warning;
-    if (!secretWord) {
-        warning = (
-            <span>
-
-            </span>
-        )
+    if (success) {
+        return null;
     }
 
     return (

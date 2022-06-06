@@ -12,6 +12,7 @@ import Input from "./Input"
 // }))
 
 const defaultProps = {
+    success: false,
     secretWord: "train"
 }
 
@@ -20,11 +21,44 @@ const setup = (props = {}) => {
     return shallow(<Input {...setupProps} />)
 }
 
-test("renders without error", () => {
-    const wrapper = setup();
-    const component = findByTestAttr(wrapper, "component-input");
-    expect(component.length).toBe(1);
-});
+describe("render", () => {
+    let wrapper;
+
+    // success false
+    describe("rendes with success false", () => {
+
+        beforeEach(() => {
+            wrapper = setup({ success: false });
+        })
+
+        test("renders without error", () => {
+            const component = findByTestAttr(wrapper, "component-input");
+            expect(component.length).toBe(1);
+        });
+
+        test("input shows", () => {
+            const inputComponent = findByTestAttr(wrapper, "input-box");
+            expect(inputComponent.exists()).toBe(true);
+        });
+
+        test("submit btn shows", () => {
+            const inputComponent = findByTestAttr(wrapper, "submit-button");
+            expect(inputComponent.exists()).toBe(true);
+        });
+    });
+
+    // success true
+    describe("rendes with success true", () => {
+        beforeEach(() => {
+            wrapper = setup({ success: true });
+        })
+
+        test("component input do not show", () => {
+            const component = findByTestAttr(wrapper, "component-input");
+            expect(component.exists()).toBe(false);
+        });
+    });
+})
 
 test("does not throw warning with expected prop", () => {
     checkProps(Input, defaultProps)
